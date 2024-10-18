@@ -33,7 +33,7 @@ def screenshots_folder():
     # Define la ruta de la carpeta donde almacenarás las capturas de pantalla
     return "screenshots_publi"
 
-@pytest.mark.parametrize("allure_story, valor, tipo_dato, selector, ruta", PublicPage.leer_datos_csv('./data/elementos.csv'))
+@pytest.mark.parametrize("allure_story, valor, tipo_dato, selector, ruta", PublicPage.leer_datos_csv('/var/jenkins_home/workspace/Publicacion_POM/data/elementos.csv'))
 @allure.feature('Validación de datos en sitio de Publicación - POM')
 def test_validacion_datos(setup, df, allure_story, valor, tipo_dato, selector, ruta, screenshots_folder):
     """
