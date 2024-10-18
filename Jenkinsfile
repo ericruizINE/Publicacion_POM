@@ -49,7 +49,7 @@ pipeline {
           steps {
             sh """
                     . ${VENV_DIR}/bin/activate > /dev/null 2>&1
-                    pytest ./tests/descarga.py --html=report.html --self-contained-html --alluredir=test/report
+                    pytest descarga.py --html=report.html --self-contained-html --alluredir=test/report
                """
           }
         }
