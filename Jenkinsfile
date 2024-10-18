@@ -1,7 +1,7 @@
 pipeline {
     agent any    
     environment {
-        VENV_DIR = '/var/jenkins_home/workspace/Publicacion/venv'
+        VENV_DIR = '/var/jenkins_home/workspace/Publicacion_POM/venv'
         APP_VERSION = '1.0.0'
         PLATFORM = 'Linux'
         BROWSER = 'Chrome'
@@ -11,7 +11,7 @@ pipeline {
             steps {
                 deleteDir()
                 //Clonar el repositorio Git
-                git url: 'https://github.com/ericruizINE/descargaCSV.git', branch: 'main'
+                git url: 'https://github.com/ericruizINE/Publicacion_POM.git', branch: 'main'
             }
         }
         stage('Install & Setup venv') {
