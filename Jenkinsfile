@@ -76,6 +76,8 @@ pipeline {
                 echo "El reporte2 de PYTest está disponible en: ${reportpy}"
                 def reportpy2 = "${env.BUILD_URL}execution/node/3/ws/report.html"
                 echo "El reporte de PYTest está disponible en: ${reportpy2}"
+                archiveArtifacts artifacts: 'tests/report.html', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'report.html', allowEmptyArchive: true
             }
         }
     }
