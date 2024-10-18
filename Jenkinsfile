@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                     // Generar archivo environment.properties con variables de entorno
-                    def alluredir = "report"
+                    def alluredir = "tests/report"
                     sh "mkdir -p ${alluredir}"
                     sh """
                         echo 'APP_VERSION=${env.APP_VERSION}' >> ${alluredir}/environment.properties
@@ -49,7 +49,7 @@ pipeline {
           steps {
             sh """
                     . ${VENV_DIR}/bin/activate > /dev/null 2>&1
-                    pytest descarga.py --html=report.html --self-contained-html --alluredir=report
+                    pytest descarga.py --html=report.html --self-contained-html
                """
           }
         }
@@ -68,7 +68,7 @@ pipeline {
     post {
         always {
             script {
-                allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'report']]
+                allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'tests/report']]
                 // Publica la URL del reporte en la consola de Jenkins
                 def allureReportUrl = "${env.BUILD_URL}allure"
                 echo "El reporte de Allure está disponible en: ${allureReportUrl}"
