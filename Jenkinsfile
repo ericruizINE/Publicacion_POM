@@ -53,37 +53,17 @@ pipeline {
                """
           }
         }
-        stage('Ejecutar Pytest Conteos CSV') {
+        stage('Ejecutar Pytest Selenium POM') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 sh """
                     . ${VENV_DIR}/bin/activate > /dev/null 2>&1
-                    pytest presidencia.py --alluredir=report
+                    cd tests
+                    pytest --html=report.html --self-contained-html --alluredir=report
                """
                 }
             }
         }
-        stage('Ejecutar Pytest Selenium Publicación') {
-            steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                sh """
-                    . ${VENV_DIR}/bin/activate > /dev/null 2>&1
-                    pytest pytestpublicsv.py --alluredir=report
-               """
-                }
-            }
-        }
-        // stage('Ejecutar Pytest Selenium POM') {
-        //     steps {
-        //         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-        //         sh """
-        //             . ${VENV_DIR}/bin/activate > /dev/null 2>&1
-        //             cd tests
-        //             pytest --html=report.html --self-contained-html --alluredir=report
-        //        """
-        //         }
-        //     }
-        // }
     }
     post {
         always {

@@ -1,0 +1,9 @@
+requests
+pandas
+numpy
+selenium
+pillow
+chromedriver-autoinstaller
+pytest
+allure-pytest
+pytest-html

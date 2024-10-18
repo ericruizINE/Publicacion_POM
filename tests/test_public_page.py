@@ -11,7 +11,7 @@ from pages.public_page import PublicPage
 @pytest.fixture
 def df():
     # Leer el archivo CSV en un DataFrame
-    csv_path = 'PRES_2024.csv'
+    csv_path = './data/PRES_2024.csv'
     df = pd.read_csv(csv_path, skiprows=3, nrows=1, header=None, names=[
         "ACTAS_ESPERADAS", "ACTAS_REGISTRADAS", "ACTAS_FUERA_CATALOGO", 
         "ACTAS_CAPTURADAS", "PORCENTAJE_ACTAS_CAPTURADAS", 
@@ -33,7 +33,7 @@ def screenshots_folder():
     # Define la ruta de la carpeta donde almacenarás las capturas de pantalla
     return "screenshots_publi"
 
-@pytest.mark.parametrize("allure_story, valor, tipo_dato, selector, ruta", PublicPage.leer_datos_csv('elementos.csv'))
+@pytest.mark.parametrize("allure_story, valor, tipo_dato, selector, ruta", PublicPage.leer_datos_csv('./data/elementos.csv'))
 @allure.feature('Validación de datos en sitio de Publicación - POM')
 def test_validacion_datos(setup, df, allure_story, valor, tipo_dato, selector, ruta, screenshots_folder):
     """
