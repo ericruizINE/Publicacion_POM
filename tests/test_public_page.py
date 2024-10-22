@@ -7,7 +7,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from utils.data_reader import data_reader
 from pages.public_page import PublicPage
-from utils.utils import utils
+from utils.utils import Utils
 
 @pytest.fixture
 def df():
@@ -43,7 +43,7 @@ def test_validacion_datos(setup, df, allure_story, valor, tipo_dato, selector, r
     
     try:
         driver = setup
-        Utils = utils(driver)
+        public_page = PublicPage(driver)
         elemento = driver.find_element(locator_type_obj, ruta)
         if tipo_dato == 'int':
             valor_en_pagina = elemento.text
@@ -53,7 +53,7 @@ def test_validacion_datos(setup, df, allure_story, valor, tipo_dato, selector, r
         else:
             pytest.fail(f"Tipo de dato no reconocido: {tipo_dato}")
 
-        file_path = Utils.highlight_and_capture_element(elemento, 'screenshots_publi')
+        file_path = public_page.highlight_and_capture_element(elemento, 'screenshots_publi')
         
         Utils.attach_allure_results(valor_en_pagina, valor_csv, file_path)
 
