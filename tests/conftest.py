@@ -10,6 +10,7 @@ from pytest_metadata.plugin import metadata_key
 @pytest.fixture(scope="function")
 def setup():
     # Configurar el controlador de Chrome
+    print(f"Current working directory: {os.getcwd()}")
     chromedriver_autoinstaller.install() 
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--headless")

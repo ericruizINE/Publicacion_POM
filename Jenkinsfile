@@ -45,6 +45,20 @@ pipeline {
                 }
             }
         }
+        stage('Install Chromedriver') {
+            steps {
+                script {
+                    dir('/var/jenkins_home/workspace/Publicacion_POM') {
+                        try {
+                            chromedriver_autoinstaller.install()
+                        } catch (Exception e) {
+                            echo "Error descargando ChromeDriver: ${e}"
+                            // Agrega código aquí para manejar la excepción, como descarga manual
+                        }
+                    }
+                }
+            }
+        }
         stage('Descarga de Archivos CSV Presidencia') {
           steps {
             sh """
