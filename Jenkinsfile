@@ -45,14 +45,14 @@ pipeline {
                 }
             }
         }
-        stage('Descarga de Archivos CSV Presidencia') {
-          steps {
-            sh """
-                    . ${VENV_DIR}/bin/activate > /dev/null 2>&1
-                    pytest descarga.py --html=report.html --self-contained-html
-               """
-          }
-        }
+        // stage('Descarga de Archivos CSV Presidencia') {
+        //   steps {
+        //     sh """
+        //             . ${VENV_DIR}/bin/activate > /dev/null 2>&1
+        //             pytest descarga.py --html=report.html --self-contained-html
+        //        """
+        //   }
+        // }
         stage('Ejecutar Pytest Selenium POM') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
