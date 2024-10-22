@@ -5,7 +5,7 @@ class data_reader():
     # Función para leer datos desde el CSV y eliminar el BOM si está presente
     @staticmethod
     def leer_datos_csv():
-        filepath = '/var/jenkins_home/workspace/Publicacion_POM/tests/data/elementos.csv'
+        filepath = '/var/jenkins_home/workspace/Publicacion_POM/data/elementos.csv'
         df = pd.read_csv(filepath, encoding='utf-8-sig')
 
         for index, row in df.iterrows():
