@@ -10,7 +10,7 @@ from pages.public_page import PublicPage
 
 @pytest.fixture
 def df():
-    PublicPage.df()
+    return df()
 
 @pytest.fixture
 def screenshots_folder():
