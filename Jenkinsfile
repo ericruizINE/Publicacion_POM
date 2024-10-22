@@ -45,14 +45,6 @@ pipeline {
                 }
             }
         }
-        // stage('Descarga de Archivos CSV Presidencia') {
-        //   steps {
-        //     sh """
-        //             . ${VENV_DIR}/bin/activate > /dev/null 2>&1
-        //             pytest descarga.py --html=report.html --self-contained-html
-        //        """
-        //   }
-        // }
         stage('Ejecutar Pytest Selenium POM') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
@@ -73,7 +65,7 @@ pipeline {
                 def allureReportUrl = "${env.BUILD_URL}allure"
                 echo "El reporte de Allure está disponible en: ${allureReportUrl}"
                 def reportpy = "${env.BUILD_URL}execution/node/3/ws/tests/report.html"
-                echo "El reporte2 de PYTest está disponible en: ${reportpy}"
+                echo "El reporte de Pytest está disponible en: ${reportpy}"
                 archiveArtifacts artifacts: 'tests/report.html', allowEmptyArchive: true
                 archiveArtifacts artifacts: 'tests/data/PRES_2024.csv', allowEmptyArchive: true
             }
