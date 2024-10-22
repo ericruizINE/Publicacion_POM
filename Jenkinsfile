@@ -27,7 +27,7 @@ pipeline {
                 // Activar el entorno virtual e instalar las dependencias
                 sh """
                     . ${VENV_DIR}/bin/activate
-                    GIT_SSL_NO_VERIFY=1 pip install --no-cache-dir -r requirements.txt --verbose
+                    pip install --no-cache-dir -r requirements.txt
                 """
             }
         }
