@@ -7,6 +7,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from utils.data_reader import data_reader
 from pages.public_page import PublicPage
+from utils.utils import Utils
 
 @pytest.fixture
 def df():
@@ -29,7 +30,6 @@ def test_validacion_datos(setup, df, allure_story, valor, tipo_dato, selector, r
     # Establecer un título dinámico para la prueba
     allure.dynamic.title(allure_story)
 
-    #valor_csv = "{:,.0f}".format(int(df[valor].iloc[0]))
     # Validar el formato según el tipo de dato
     if tipo_dato == 'int':
         valor_csv = "{:,.0f}".format(int(df[valor].iloc[0]))
@@ -53,36 +53,10 @@ def test_validacion_datos(setup, df, allure_story, valor, tipo_dato, selector, r
         else:
             pytest.fail(f"Tipo de dato no reconocido: {tipo_dato}")
 
-        #file_path = PublicPage.get_next_screenshot_path('captura_elemento')
-        #BasePage.capture_element_screenshot(elemento, file_path)
-        #print(f"Captura de pantalla guardada en: {file_path}")
         file_path = public_page.highlight_and_capture_element(elemento, 'screenshots_publi')
         
-        with allure.step("Comparando los valores de sitio vs csv"):
-            if valor_en_pagina == valor_csv:
-                allure.attach(
-                    f"Los valores coinciden, Sitio: {valor_en_pagina} CSV: {valor_csv}",
-                    name="Resultado de la validación",
-                    attachment_type=allure.attachment_type.TEXT
-                )
-                with open(file_path, "rb") as image_file:
-                    allure.attach(
-                        image_file.read(),
-                        name="Captura de pantalla del elemento",
-                        attachment_type=allure.attachment_type.PNG
-                    )
-            else:
-                allure.attach(
-                    f"Los valores no coinciden, Sitio: {valor_en_pagina} CSV: {valor_csv}",
-                    name="Resultado de la validación",
-                    attachment_type=allure.attachment_type.TEXT
-                )
-                with open(file_path, "rb") as image_file:
-                    allure.attach(
-                        image_file.read(),
-                        name="Captura de pantalla del error",
-                        attachment_type=allure.attachment_type.PNG
-                    )
+        Utils.attach_allure_results(valor_en_pagina, valor_csv, file_path)
+
         # Manejo de excepciones para múltiples validaciones
         resultados_fallidos = []
         try:
