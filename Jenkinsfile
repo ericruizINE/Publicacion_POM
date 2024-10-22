@@ -48,9 +48,11 @@ pipeline {
         stage('Install Chromedriver') {
             steps {
                 script {
+                    sh """
+                                . ${VENV_DIR}/bin/activate > /dev/null 2>&1
+                            """
                     dir('/var/jenkins_home/workspace/Publicacion_POM') {
                         try {
-                            . ${VENV_DIR}/bin/activate > /dev/null 2>&1
                             chromedriver_autoinstaller.install()
                         } catch (Exception e) {
                             echo "Error descargando ChromeDriver: ${e}"
