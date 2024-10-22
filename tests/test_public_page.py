@@ -5,19 +5,18 @@ import pandas as pd
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
-from pages.base_page import BasePage
+from utils.data_reader import data_reader
 from pages.public_page import PublicPage
 
 @pytest.fixture
 def df():
-    return PublicPage.df()
+    return data_reader.df()
 
 @pytest.fixture
 def screenshots_folder():
-    # Define la ruta de la carpeta donde almacenarás las capturas de pantalla
     return "screenshots_publi"
 
-@pytest.mark.parametrize("allure_story, valor, tipo_dato, selector, ruta", PublicPage.leer_datos_csv('/var/jenkins_home/workspace/Publicacion_POM/data/elementos.csv'))
+@pytest.mark.parametrize("allure_story, valor, tipo_dato, selector, ruta", data_reader.leer_datos_csv())
 @allure.feature('Validación de datos en sitio de Publicación - POM')
 def test_validacion_datos(setup, df, allure_story, valor, tipo_dato, selector, ruta, screenshots_folder):
     """
