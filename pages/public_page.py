@@ -3,7 +3,6 @@ import pytest
 from selenium.webdriver.common.by import By
 import pandas as pd
 from .base_page import BasePage
-from utils.utils import Utils
 
 class PublicPage(BasePage):
     def __init__(self, driver):
@@ -29,6 +28,6 @@ class PublicPage(BasePage):
         """Resalta y captura un elemento específico de la página pública."""
         element = elemento
         file_path = self.get_next_screenshot_path(screenshots_folder, 'captura_elemento')
-        Utils.capture_element_screenshot(element, file_path)
+        self.capture_element_screenshot(element, file_path)
         print(f"Captura de pantalla guardada en: {file_path}")
         return file_path  # Retorna la ruta de la captura de pantalla
