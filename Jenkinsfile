@@ -45,23 +45,6 @@ pipeline {
                 }
             }
         }
-        stage('Install Chromedriver') {
-            steps {
-                script {
-                    sh """
-                                . ${VENV_DIR}/bin/activate > /dev/null 2>&1
-                            """
-                    dir('/var/jenkins_home/workspace/Publicacion_POM') {
-                        try {
-                            chromedriver_autoinstaller.install()
-                        } catch (Exception e) {
-                            echo "Error descargando ChromeDriver: ${e}"
-                            // Agrega código aquí para manejar la excepción, como descarga manual
-                        }
-                    }
-                }
-            }
-        }
         stage('Descarga de Archivos CSV Presidencia') {
           steps {
             sh """
@@ -75,7 +58,7 @@ pipeline {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 sh """
                     . ${VENV_DIR}/bin/activate > /dev/null 2>&1
-                    // cd tests
+                    cd tests
                     pytest --html=report.html --self-contained-html --alluredir=report
                """
                 }
