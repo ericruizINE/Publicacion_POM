@@ -7,16 +7,15 @@ import pytest
 import pytest_html  
 from pytest_metadata.plugin import metadata_key  
 
-try:
-    chromedriver_autoinstaller.install()
-except Exception as e:
-    print(f"Error descargando ChromeDriver: {e}")
-    # Agrega código aquí para manejar la excepción, como descargar manualmente
-
 @pytest.fixture(scope="function")
 def setup():
     # Configurar el controlador de Chrome
-    chromedriver_autoinstaller.install() 
+    #chromedriver_autoinstaller.install() 
+    try:
+        chromedriver_autoinstaller.install()
+    except Exception as e:
+        print(f"Error descargando ChromeDriver: {e}")
+        # Agrega código aquí para manejar la excepción, como descargar manualmente
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--window-size=1920x1080")
