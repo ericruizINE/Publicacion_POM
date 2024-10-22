@@ -7,7 +7,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from utils.data_reader import data_reader
 from pages.public_page import PublicPage
-from utils.utils import Utils
+from utils.utils import utils
 
 @pytest.fixture
 def df():
@@ -43,7 +43,7 @@ def test_validacion_datos(setup, df, allure_story, valor, tipo_dato, selector, r
     
     try:
         driver = setup
-        Utils = Utils(driver)
+        Utils = utils(driver)
         elemento = driver.find_element(locator_type_obj, ruta)
         if tipo_dato == 'int':
             valor_en_pagina = elemento.text

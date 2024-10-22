@@ -5,7 +5,7 @@ import os
 
 class Utils:
     def __init__(self, driver):
-        super().__init__(driver)
+        self.driver = driver
         self.screenshots_folder = 'screenshots_publi'
         self.ensure_screenshot_folder()
 
