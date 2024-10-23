@@ -51,7 +51,9 @@ pipeline {
                 sh """
                     . ${VENV_DIR}/bin/activate > /dev/null 2>&1
                     cd tests
-                    pytest --html=report.html --self-contained-html --alluredir=report
+                    pytest test_descarga_csv.py --html=report.html --self-contained-html --alluredir=report
+                    pytest test_public_page.py --html=report.html --self-contained-html --alluredir=report
+                    pytest test_public_tcsv.py --html=report.html --self-contained-html --alluredir=report
                """
                 }
             }
