@@ -68,7 +68,7 @@ pipeline {
                 echo "El reporte de Allure está disponible en: ${allureReportUrl}"
                 def reportpy = "${env.BUILD_URL}execution/node/3/ws/tests/pytestreport/report.html"
                 echo "El reporte de Pytest está disponible en: ${reportpy}"
-                archiveArtifacts artifacts: 'tests/report.html', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'tests/pytestreport/report.html', allowEmptyArchive: true
                 archiveArtifacts artifacts: 'tests/data/PRES_2024.csv', allowEmptyArchive: true
             }
         }
