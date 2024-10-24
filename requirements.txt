@@ -7,3 +7,4 @@ chromedriver-autoinstaller
 pytest
 allure-pytest
 pytest-html
+pytest-html-merger
