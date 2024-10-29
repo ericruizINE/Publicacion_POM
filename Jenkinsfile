@@ -2,8 +2,8 @@ pipeline {
     agent any    
     environment {
         VENV_DIR = '/var/jenkins_home/workspace/Publicacion_POM/venv'
-        // Establece la política CSP vacía para permitir que Jenkins muestre correctamente el HTML incrustado
-        JAVA_OPTS = "hudson.model.DirectoryBrowserSupport.CSP="sandbox allow-scripts; default-src 'none'; img-src 'self' data: ; style-src 'self' 'unsafe-inline' data: ; script-src 'self' 'unsafe-inline' 'unsafe-eval' ;"" 
+        // Establece la política CSP vacía para permitir que Jenkins muestre correctamente el HTML incrustado 
+        JAVA_OPTS = "-Dhudson.model.DirectoryBrowserSupport.CSP=\"sandbox allow-scripts; default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval';\""
         // Establece las variables de allure
         APP_VERSION = '1.0.0'
         PLATFORM = 'Ubuntu/Linux'
